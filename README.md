@@ -1,1 +1,1 @@
-# Weighted_CoDa
+# Geometrically decaying weighted Compositional Data Analysis (CoDa)
