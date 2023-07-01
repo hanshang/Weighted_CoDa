@@ -1,6 +1,7 @@
-#############
-# CoDa model
-#############
+###########################################
+# Compositional Data Analysis (CoDa) model
+# Forecast error evaluation and comparison
+###########################################
 
 R_square_fit <- function(dat, weighting, geom_weight, fh,
                          ncomp_selection = c("eigen_ratio", "fixed"),
@@ -136,7 +137,7 @@ R_square_fit <- function(dat, weighting, geom_weight, fh,
 
 # lambda_para: parameter used in the geometrically decaying weights
 # dat: (n by p) data matrix
-# horizon: forecast horizon, chosen from 1 to 10
+# horizon: short to medium forecast horizon, chosen from 1 to 10
 # criterion: error criterion = c("KL_div", "JS_div_simple", "JS_div_geo")
 
 CoDa_geom_weight_select <- function(lambda_para, dat, horizon, order_selection, fore_method,
@@ -231,7 +232,7 @@ colnames(CoDa_geo_weight_select_ARIMA_KL_div_female) =
 colnames(CoDa_geo_weight_select_ARIMA_JS_div_simple_female) =
 colnames(CoDa_geo_weight_select_ARIMA_JS_div_geo_female) = c("Opt_para", "Opt_obj")
 
-# order_selection = "fixed"
+# order_selection = "fixed" (i.e., 6)
 
 CoDa_geo_weight_select_ARIMA_KL_div_female_ncomp_fixed = matrix(NA, 10, 2)
 for(iwk in 1:10)
@@ -370,7 +371,7 @@ colnames(CoDa_geo_weight_select_ARIMA_KL_div_male) =
 colnames(CoDa_geo_weight_select_ARIMA_JS_div_simple_male) =
 colnames(CoDa_geo_weight_select_ARIMA_JS_div_geo_male) = c("Opt_para", "Opt_obj")
 
-# order_selection = "fixed"
+# order_selection = "fixed" (i.e., 6)
 
 CoDa_geo_weight_select_ARIMA_KL_div_male_ncomp_fixed = matrix(NA, 10, 2)
 for(iwk in 1:10)
@@ -437,7 +438,7 @@ colnames(CoDa_geo_weight_select_RWD_KL_div_male) =
 colnames(CoDa_geo_weight_select_RWD_JS_div_simple_male) =
 colnames(CoDa_geo_weight_select_RWD_JS_div_geo_male) = c("Opt_para", "Opt_obj")
 
-# order_selection = "fixed"
+# order_selection = "fixed" (i.e., 6)
 
 CoDa_geo_weight_select_RWD_KL_div_male_ncomp_fixed = matrix(NA, 10, 2)
 for(iwk in 1:10)
@@ -501,7 +502,6 @@ CoDa_geo_weight_select_para_ncomp_fixed = cbind(CoDa_geo_weight_select_ARIMA_KL_
                                                 CoDa_geo_weight_select_RWD_KL_div_male_ncomp_fixed[,1],
                                                 CoDa_geo_weight_select_RWD_JS_div_simple_male_ncomp_fixed[,1],
                                                 CoDa_geo_weight_select_RWD_JS_div_geo_male_ncomp_fixed[,1])
-
 
 colnames(CoDa_geo_weight_select_para) = colnames(CoDa_geo_weight_select_para_ncomp_fixed) = rep(c("KLD", "JSD(simple)", "JSD(geo)"), 4)
 rownames(CoDa_geo_weight_select_para) = rownames(CoDa_geo_weight_select_para_ncomp_fixed) = 1:10
@@ -599,7 +599,7 @@ CoDa_simple_test_RWD_female = cbind(CoDa_simple_test_RWD_KL_div_female,
                                     CoDa_simple_test_RWD_JS_div_simple_female, CoDa_simple_test_RWD_JS_div_geo_female)
 colnames(CoDa_simple_test_RWD_female) = c("KL_div", "JS_div_simple", "JS_div_geo")
 
-## ncomp_selection = "fixed"
+## ncomp_selection = "fixed" (i.e., 6)
 
 # fore_method = "ARIMA"
 
@@ -666,7 +666,7 @@ CoDa_geo_test_ARIMA_female = cbind(CoDa_geo_test_ARIMA_KL_div_female,
                                    CoDa_geo_test_ARIMA_JS_div_simple_female, CoDa_geo_test_ARIMA_JS_div_geo_female)
 colnames(CoDa_geo_test_ARIMA_female) = c("KL_div", "JS_div_simple", "JS_div_geo")
 
-# order_selection = "fixed"
+# order_selection = "fixed" (i.e., 6)
 
 CoDa_geo_test_ARIMA_KL_div_female_ncomp_fixed =
 CoDa_geo_test_ARIMA_JS_div_simple_female_ncomp_fixed = CoDa_geo_test_ARIMA_JS_div_geo_female_ncomp_fixed = vector("numeric", 10)
@@ -717,7 +717,7 @@ CoDa_geo_test_RWD_female = cbind(CoDa_geo_test_RWD_KL_div_female,
                                  CoDa_geo_test_RWD_JS_div_simple_female, CoDa_geo_test_RWD_JS_div_geo_female)
 colnames(CoDa_geo_test_RWD_female) = c("KL_div", "JS_div_simple", "JS_div_geo")
 
-# order_selection = "fixed"
+# order_selection = "fixed" (i.e., 6)
 
 CoDa_geo_test_RWD_KL_div_female_ncomp_fixed =
 CoDa_geo_test_RWD_JS_div_simple_female_ncomp_fixed = CoDa_geo_test_RWD_JS_div_geo_female_ncomp_fixed = vector("numeric", 10)
@@ -766,7 +766,7 @@ CoDa_simple_test_ARIMA_male = cbind(CoDa_simple_test_ARIMA_KL_div_male,
                                     CoDa_simple_test_ARIMA_JS_div_simple_male, CoDa_simple_test_ARIMA_JS_div_geo_male)
 colnames(CoDa_simple_test_ARIMA_male) = c("KL_div", "JS_div_simple", "JS_div_geo")
 
-# order_selection = "fixed"
+# order_selection = "fixed" (i.e., 6)
 
 CoDa_simple_test_ARIMA_KL_div_male_ncomp_fixed =
 CoDa_simple_test_ARIMA_JS_div_simple_male_ncomp_fixed = CoDa_simple_test_ARIMA_JS_div_geo_male_ncomp_fixed = vector("numeric", 10)
@@ -806,7 +806,7 @@ CoDa_simple_test_RWD_male = cbind(CoDa_simple_test_RWD_KL_div_male,
                                   CoDa_simple_test_RWD_JS_div_simple_male, CoDa_simple_test_RWD_JS_div_geo_male)
 colnames(CoDa_simple_test_RWD_male) = c("KL_div", "JS_div_simple", "JS_div_geo")
 
-# order_selection = "fixed"
+# order_selection = "fixed" (i.e., 6)
 
 CoDa_simple_test_RWD_KL_div_male_ncomp_fixed =
 CoDa_simple_test_RWD_JS_div_simple_male_ncomp_fixed = CoDa_simple_test_RWD_JS_div_geo_male_ncomp_fixed = vector("numeric", 10)
@@ -855,7 +855,7 @@ CoDa_geo_test_ARIMA_male = cbind(CoDa_geo_test_ARIMA_KL_div_male,
                                  CoDa_geo_test_ARIMA_JS_div_simple_male, CoDa_geo_test_ARIMA_JS_div_geo_male)
 colnames(CoDa_geo_test_ARIMA_male) = c("KL_div", "JS_div_simple", "JS_div_geo")
 
-# order_selection = "fixed"
+# order_selection = "fixed" (i.e., 6)
 
 CoDa_geo_test_ARIMA_KL_div_male_ncomp_fixed =
 CoDa_geo_test_ARIMA_JS_div_simple_male_ncomp_fixed = CoDa_geo_test_ARIMA_JS_div_geo_male_ncomp_fixed = vector("numeric", 10)
@@ -905,7 +905,7 @@ CoDa_geo_test_RWD_male = cbind(CoDa_geo_test_RWD_KL_div_male,
                                CoDa_geo_test_RWD_JS_div_simple_male, CoDa_geo_test_RWD_JS_div_geo_male)
 colnames(CoDa_geo_test_RWD_male) = c("KL_div", "JS_div_simple", "JS_div_geo")
 
-# order_selection = "fixed"
+# order_selection = "fixed" (i.e., 6)
 
 CoDa_geo_test_RWD_KL_div_male_ncomp_fixed =
 CoDa_geo_test_RWD_JS_div_simple_male_ncomp_fixed = CoDa_geo_test_RWD_JS_div_geo_male_ncomp_fixed = vector("numeric", 10)
@@ -949,7 +949,6 @@ CoDa_simple_geo_RWD_male = cbind(CoDa_simple_test_RWD_male, CoDa_geo_test_RWD_ma
 colnames(CoDa_simple_geo_ARIMA_female) = colnames(CoDa_simple_geo_RWD_female) =
 colnames(CoDa_simple_geo_ARIMA_male) = colnames(CoDa_simple_geo_RWD_male) = rep(c("KLD", "JSD(simple)", "JSD(geo)"), 4)
 
-require(xtable)
 xtable(rbind(CoDa_simple_geo_ARIMA_female, colMeans(CoDa_simple_geo_ARIMA_female)), digits = 3)
 xtable(rbind(CoDa_simple_geo_RWD_female, colMeans(CoDa_simple_geo_RWD_female)), digits = 3)
 
