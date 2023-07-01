@@ -32,6 +32,7 @@ for(iwk in 1:50)
 
 ######################################################
 # Work out lx on the basis of forecast death count dx
+# 1000 is the number of bootstrap samples
 ######################################################
 
 lx_female_boot = lx_female_boot_geo =
@@ -129,7 +130,7 @@ colnames(female_annuities_lb_geo) = colnames(female_annuities_ub_geo) =
 colnames(male_annuities_lb) = colnames(male_annuities_ub) =
 colnames(male_annuities_lb_geo) = colnames(male_annuities_ub_geo) = maturities
 
-# CoDa
+# Standard (unweighted) CoDa
 
 xtable(cbind(female_annuities_lb[,1], female_annuities_ub[,1],
              female_annuities_lb[,2], female_annuities_ub[,2],
@@ -313,7 +314,7 @@ colnames(female_annuities_eta_0.05_lb_geo) = colnames(female_annuities_eta_0.05_
 colnames(male_annuities_eta_0.05_lb) = colnames(male_annuities_eta_0.05_ub) =
 colnames(male_annuities_eta_0.05_lb_geo) = colnames(male_annuities_eta_0.05_ub_geo) = maturities
 
-# CoDa
+# Standard (unweighted) CoDa
 
 xtable(cbind(female_annuities_eta_0.05_lb[,1], female_annuities_eta_0.05_ub[,1],
              female_annuities_eta_0.05_lb[,2], female_annuities_eta_0.05_ub[,2],
