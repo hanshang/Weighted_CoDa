@@ -1,6 +1,7 @@
-#############
-# CoDa model
-#############
+###########################################
+# Compositional Data Analysis (CoDa) model
+# An example of model fitting
+###########################################
 
 R_square_fit_ex <- function(dat, weighting, geom_weight, fh,
                          ncomp_selection = c("eigen_ratio", "fixed"),
@@ -34,7 +35,7 @@ R_square_fit_ex <- function(dat, weighting, geom_weight, fh,
   }
   alpha_x = exp(geom_mean)
 
-  # log ratio
+  # centered log ratio
 
   h_x_t = matrix(NA, n_year, n_age)
   for(ik in 1:n_year)
@@ -137,7 +138,7 @@ SWE_female_pop_ex_weighted <- R_square_fit_ex(dat = SWE_female_pop[1:269,], weig
                                               fh = 1, ncomp_selection = "eigen_ratio",
                                               forecasting_method = "ARIMA")
 
-# CoDa
+# unweighted (standard) CoDa
 
 SWE_female_pop_ex_unweighted <- R_square_fit_ex(dat = SWE_female_pop[1:269,], weighting = "simple",
                                                 fh = 1, ncomp_selection = "eigen_ratio",
@@ -184,7 +185,7 @@ SWE_male_pop_ex_weighted <- R_square_fit_ex(dat = SWE_male_pop[1:269,], weightin
                                             fh = 1, ncomp_selection = "eigen_ratio",
                                             forecasting_method = "ARIMA")
 
-# CoDa
+# unweighted (standard) CoDa
 
 SWE_male_pop_ex_unweighted <- R_square_fit_ex(dat = SWE_male_pop[1:269,], weighting = "simple",
                                               fh = 1, ncomp_selection = "eigen_ratio",
