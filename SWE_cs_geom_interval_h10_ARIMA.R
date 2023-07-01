@@ -9,14 +9,6 @@
 # B: number of bootstrap samples
 # fmethod: forecasting method
 
-# set a working directory
-
-setwd("~/Dropbox/Todos/cs_geometric/code")
-
-# load R packages
-
-source("load_packages.R")
-
 CoDa_interval_bootstrap <- function(dat, weighting = c("simple", "geom"), geom_weight,
                                     fh, ncomp_selection = c("eigen_ratio", "fixed"),
                                     B = 1000, fmethod = c("ARIMA", "RWF_drift"))
@@ -212,11 +204,9 @@ CoDa_interval_bootstrap <- function(dat, weighting = c("simple", "geom"), geom_w
     return(list(fore_count = d_x_t_star_fore, PI_80 = PI_80, PI_95 = PI_95))
 }
 
-#####################
-# CoDa test function
-#####################
-
+#################
 # interval score
+#################
 
 interval_score <- function(holdout, lb, ub, alpha)
 {
@@ -568,7 +558,6 @@ for(iwk in 1:10)
 rownames(CoDa_int_geo_weight_ARIMA_male_para_CPD_95_ncomp_fixed) = 1:10
 colnames(CoDa_int_geo_weight_ARIMA_male_para_CPD_95_ncomp_fixed) = c("Opt_para", "Opt_obj")
 
-
 ##############################################
 # interval forecasts using the testing sample
 ##############################################
@@ -599,7 +588,6 @@ CoDa_int_test <- function(dat, order_selection, horizon, weit_choice, lambda_par
     return(list(den_int_80 = den_int_80, den_int_95 = den_int_95,
                 interval_score_80 = interval_score_80, interval_score_95 = interval_score_95))
 }
-
 
 ###################
 # simple weighting
@@ -645,7 +633,7 @@ colnames(array_int_score_80_ARIMA_male) = colnames(array_int_score_95_ARIMA_male
 round(colMeans(array_int_score_80_ARIMA_male), 4) # 531.4368 0.9273 0.1273
 round(colMeans(array_int_score_95_ARIMA_male), 4) # 799.9029 0.9981 0.0481
 
-### ncomp_selection = "fixed"
+### ncomp_selection = "fixed" (i.e., 6)
 
 ## fore_method = "ARIMA"
 
@@ -684,7 +672,6 @@ colnames(array_int_score_80_ARIMA_male_ncomp_fixed) = colnames(array_int_score_9
 
 round(colMeans(array_int_score_80_ARIMA_male_ncomp_fixed), 4) # 426.2014 0.9801 0.1801
 round(colMeans(array_int_score_95_ARIMA_male_ncomp_fixed), 4) # 760.0749 0.9995 0.0495
-
 
 #################################
 # geometrically decaying weights
@@ -758,7 +745,7 @@ colnames(geom_male_array_int_CPD_80) = colnames(geom_male_array_int_CPD_95) = c(
 round(colMeans(geom_male_array_int_CPD_80), 4) # 846.9539  0.7864 0.0471
 round(colMeans(geom_male_array_int_CPD_95), 4) # 1275.8922 0.9319 0.0269
 
-### order_selection = "fixed"
+### order_selection = "fixed" (i.e., 6)
 
 ## female
 
@@ -847,7 +834,7 @@ colnames(geom_ARIMA_array_int_CPD) = c("S_F_CPD_80", "S_F_CPD_95",
                                        "G_F_ncomp_fixed_CPD_80", "G_F_ncomp_fixed_CPD_95",
                                        "S_M_ncomp_fixed_CPD_80", "S_M_ncomp_fixed_CPD_95",
                                        "G_M_ncomp_fixed_CPD_80", "G_M_ncomp_fixed_CPD_95")
-require(xtable)
+
 xtable(geom_ARIMA_array_int_CPD[,1:8], digits = 3)
 round(colMeans(geom_ARIMA_array_int_CPD[,1:8]), 3) # 0.136 0.050 0.040 0.030 0.170 0.049 0.083 0.025
 
