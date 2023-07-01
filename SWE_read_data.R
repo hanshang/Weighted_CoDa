@@ -6,8 +6,6 @@ source("load_packages.R")
 # set a working directory
 ##########################
 
-setwd("~/Dropbox/Todos/cs_geometric/data")
-
 female_qx = t(matrix(read.table("SWE_lt_female_death.txt", header = TRUE)[,4], 111, 270))
 male_qx   = t(matrix(read.table("SWE_lt_male_death.txt", header = TRUE)[,4], 111, 270))
 female_e0 = matrix(read.table("SWE_lt_female_death.txt", header = TRUE)[,"ex"],111,270)[1,]
