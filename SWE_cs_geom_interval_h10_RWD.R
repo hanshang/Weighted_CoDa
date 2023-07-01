@@ -9,14 +9,6 @@
 # B: number of bootstrap samples
 # fmethod: forecasting method
 
-# set a working directory
-
-setwd("~/Dropbox/Todos/cs_geometric/code")
-
-# load R packages
-
-source("load_packages.R")
-
 CoDa_interval_bootstrap <- function(dat, weighting = c("simple", "geom"), geom_weight,
                                     fh, ncomp_selection = c("eigen_ratio", "fixed"),
                                     B = 1000, fmethod = c("ARIMA", "RWF_drift"))
@@ -212,11 +204,9 @@ CoDa_interval_bootstrap <- function(dat, weighting = c("simple", "geom"), geom_w
     return(list(PI_80 = PI_80, PI_95 = PI_95))
 }
 
-#####################
-# CoDa test function
-#####################
-
+#################
 # interval score
+#################
 
 interval_score <- function(holdout, lb, ub, alpha)
 {
@@ -402,7 +392,6 @@ for(iwk in 1:10)
 rownames(CoDa_int_geo_weight_RWD_male_para_score_95_ncomp_fixed) = 1:10
 colnames(CoDa_int_geo_weight_RWD_male_para_score_95_ncomp_fixed) = c("opt_para", "opt_obj")
 
-
 #######################
 # criterion = "CPD_80"
 #######################
@@ -459,7 +448,6 @@ for(iwk in 1:10)
 }
 rownames(CoDa_int_geo_weight_RWD_male_para_CPD_80_ncomp_fixed) = 1:10
 colnames(CoDa_int_geo_weight_RWD_male_para_CPD_80_ncomp_fixed) = c("opt_para", "opt_obj")
-
 
 #######################
 # criterion = "CPD_95"
@@ -560,7 +548,7 @@ colnames(array_int_score_80_male_RWD) = colnames(array_int_score_95_male_RWD) = 
 round(colMeans(array_int_score_80_male_RWD), 4) # 542.3092 0.9876 0.1876
 round(colMeans(array_int_score_95_male_RWD), 4) # 978.2880 0.9999 0.0499
 
-## order_selection = "fixed"
+## order_selection = "fixed" (i.e., 6)
 
 # female
 
@@ -597,7 +585,6 @@ colnames(array_int_score_80_male_RWD_ncomp_fixed) = colnames(array_int_score_95_
 
 round(colMeans(array_int_score_80_male_RWD_ncomp_fixed), 4) # 516.5812 0.9942 0.1942
 round(colMeans(array_int_score_95_male_RWD_ncomp_fixed), 4) # 939.6206 0.9998 0.0498
-
 
 #################################
 # geometrically decaying weights
@@ -671,7 +658,7 @@ colnames(geom_male_array_int_CPD_80_RWD) = colnames(geom_male_array_int_CPD_95_R
 round(colMeans(geom_male_array_int_CPD_80_RWD), 4) #  968.7310 0.7707 0.0356
 round(colMeans(geom_male_array_int_CPD_95_RWD), 4) # 1515.3710 0.9467 0.0059
 
-### order_selection = "fixed"
+### order_selection = "fixed" (i.e., 6)
 
 ## female
 
@@ -761,7 +748,7 @@ colnames(geom_RWD_array_int_CPD) = c("S_F_CPD_80", "S_F_CPD_95",
                                        "G_F_ncomp_fixed_CPD_80", "G_F_ncomp_fixed_CPD_95",
                                        "S_M_ncomp_fixed_CPD_80", "S_M_ncomp_fixed_CPD_95",
                                        "G_M_ncomp_fixed_CPD_80", "G_M_ncomp_fixed_CPD_95")
-require(xtable)
+
 xtable(geom_RWD_array_int_CPD[,1:8], digits = 3)
 round(colMeans(geom_RWD_array_int_CPD[,1:8]), 3) # 0.156 0.050 0.059 0.043 0.187 0.050 0.045 0.023
 
