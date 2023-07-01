@@ -65,12 +65,11 @@ plot(fts(0:110, t(SWE_male_pop)*10^5, xname = "Age", yname = "Life-table death c
 lines(fts(0:110, SWE_male_out_CoDa_RWD_geo))
 dev.off()
 
-
 ############################################
 # Work out age-specific survival count (lx)
 ############################################
 
-# female & male
+# female & male using RWD method
 
 lx_female_RWD = lx_male_RWD = lx_female_RWD_geo = lx_male_RWD_geo = matrix(NA, 111, 50)
 for(ij in 1:50)
@@ -89,9 +88,9 @@ for(ij in 1:50)
     }
 }
 
-#####################################
-# Work out survival probability (px)
-#####################################
+#############################################
+# Work out survival probability (px) from lx
+#############################################
 
 px_female_RWD = px_male_RWD = px_female_RWD_geo = px_male_RWD_geo = matrix(NA, 111, 50)
 for(ij in 1:50)
@@ -106,9 +105,10 @@ for(ij in 1:50)
     }
 }
 
-############################
+############################################
 # define ages and maturities
-############################
+# empty cell is when age + maturities > 105
+############################################
 
 ages = seq(60, 105, by = 5)
 maturities = seq(5, 30, by = 5)
@@ -148,11 +148,6 @@ rownames(annuities_female_mat_RWD) = rownames(annuities_male_mat_RWD) =
 rownames(annuities_female_mat_RWD_geo) = rownames(annuities_male_mat_RWD_geo) = ages
 colnames(annuities_female_mat_RWD) = colnames(annuities_male_mat_RWD) =
 colnames(annuities_female_mat_RWD_geo) = colnames(annuities_male_mat_RWD_geo) = maturities
-
-# install and load an R package
-
-install.packages("xtable")
-require(xtable)
 
 # female
 
